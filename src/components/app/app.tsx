@@ -1,7 +1,8 @@
+import CitiesCard from '../cities-card/cities-card';
 import MainScreen from '../main-screen/main-screen';
 
 function App(): JSX.Element {
-  return <MainScreen />;
+  return <CitiesCard />;
 }
 
 export default App;
