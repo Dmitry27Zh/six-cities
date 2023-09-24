@@ -3,6 +3,8 @@ import PlaceCard from '../place-card/place-card';
 function MainScreen({placesCount}: {
   placesCount: number;
 }): JSX.Element {
+  const cities = Array.from({ length: placesCount }, (_, index) => ({ _id: index }));
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -93,11 +95,7 @@ function MainScreen({placesCount}: {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {<CitiesCard />}
-                {<CitiesCard />}
-                {<CitiesCard />}
-                {<CitiesCard />}
-                {<CitiesCard />}
+                {cities.map(({_id}) => <PlaceCard key={_id}/>)}
               </div>
             </section>
             <div className="cities__right-section">
