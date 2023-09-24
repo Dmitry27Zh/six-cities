@@ -1,6 +1,8 @@
-import CitiesCard from '../cities-card/cities-card';
+import PlaceCard from '../place-card/place-card';
 
-function MainScreen(): JSX.Element {
+function MainScreen({placesCount}: {
+  placesCount: number;
+}): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
