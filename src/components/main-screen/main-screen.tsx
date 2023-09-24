@@ -1,8 +1,10 @@
 import PlaceCard from '../place-card/place-card';
 
-function MainScreen({placesCount}: {
+type MainScreenProps = {
   placesCount: number;
-}): JSX.Element {
+}
+
+function MainScreen({placesCount}: MainScreenProps): JSX.Element {
   const cities = Array.from({ length: placesCount }, (_, index) => ({ _id: index }));
 
   return (
