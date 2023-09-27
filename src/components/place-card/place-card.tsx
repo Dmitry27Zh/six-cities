@@ -2,11 +2,17 @@ import { MAX_RATING } from '../../const';
 import { Offer } from '../../types/data';
 import _ from 'lodash';
 
-function PlaceCard({price, isFavorite, type, previewImage, title, rating}: Offer): JSX.Element {
+type PlaceCardProps = {
+  offer: Offer;
+  onMouseOver: (offer: Offer) => void;
+}
+
+function PlaceCard({offer, onMouseOver}: PlaceCardProps): JSX.Element {
+  const {price, isFavorite, type, previewImage, title, rating} = offer;
   const ratingPerc = (rating / MAX_RATING) * 100;
 
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={() => onMouseOver(offer)}>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="/">
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="preview"/>
