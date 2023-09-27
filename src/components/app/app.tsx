@@ -14,12 +14,14 @@ type AppProps = {
 }
 
 function App({offers, reviews}: AppProps): JSX.Element {
+  const favorites = offers.filter((offer) => offer.isFavorite);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} element={<MainScreen offers={offers} />} />
         <Route path={AppRoute.Signin} element={<SigninScreen />}/>
-        <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><FavoritesScreen /></PrivateRoute>}/>
+        <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><FavoritesScreen offers={favorites} /></PrivateRoute>}/>
         <Route path={AppRoute.Room} element={<RoomScreen />}/>
         <Route path='*' element={<NotFoundScreen />}/>
       </Routes>

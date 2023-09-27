@@ -20,7 +20,7 @@ export const offers = [
     },
     id: 1,
     images: ['img/1.png', 'img/2.png'],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     location: {
       latitude: 52.35514938496378,
@@ -56,7 +56,7 @@ export const offers = [
     id: 2,
     images: ['img/1.png', 'img/2.png'],
     isFavorite: true,
-    isPremium: false,
+    isPremium: true,
     location: {
       latitude: 52.35514938496378,
       longitude: 4.673877537499948,
@@ -112,7 +112,7 @@ export const offers = [
         longitude: 4.895168,
         zoom: 10
       },
-      name: 'Amsterdam'
+      name: 'Cologne'
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine',
@@ -125,7 +125,7 @@ export const offers = [
     },
     id: 4,
     images: ['img/1.png', 'img/2.png'],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     location: {
       latitude: 52.35514938496378,

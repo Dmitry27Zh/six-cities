@@ -8,9 +8,11 @@ export type Location = {
   zoom: number;
 }
 
+export type CityName = string;
+
 export type City = {
   location: Location;
-  name: string;
+  name: CityName;
 }
 
 export type User = {
