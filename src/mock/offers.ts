@@ -55,7 +55,7 @@ export const offers = [
     },
     id: 2,
     images: ['img/1.png', 'img/2.png'],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     location: {
       latitude: 52.35514938496378,
@@ -100,7 +100,7 @@ export const offers = [
     maxAdults: 4,
     previewImage: 'img/1.png',
     price: 120,
-    rating: 4.8,
+    rating: 2.5,
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment'
   },
@@ -135,7 +135,7 @@ export const offers = [
     maxAdults: 4,
     previewImage: 'img/1.png',
     price: 120,
-    rating: 4.8,
+    rating: 1,
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment'
   },

@@ -1,5 +1,7 @@
 export type Id = number
 
+export type Src = string
+
 export type Location = {
   latitude: number;
   longitude: number;
@@ -28,7 +30,7 @@ export type Offer = {
   isPremium: boolean;
   location: Location;
   maxAdults: number;
-  previewImage: string;
+  previewImage: Src;
   price: number;
   rating: Rating;
   title: string;

@@ -1,12 +1,11 @@
+import { Offers } from '../../types/data';
 import PlaceCard from '../place-card/place-card';
 
 type MainScreenProps = {
-  placesCount: number;
+  offers: Offers;
 }
 
-function MainScreen({placesCount}: MainScreenProps): JSX.Element {
-  const cities = Array.from({ length: placesCount }, (_, index) => ({ _id: index }));
-
+function MainScreen({offers}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -80,7 +79,7 @@ function MainScreen({placesCount}: MainScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -97,7 +96,7 @@ function MainScreen({placesCount}: MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {cities.map(({_id}) => <PlaceCard key={_id}/>)}
+                {offers.map((offer) => <PlaceCard key={offer.id} {...offer} />)}
               </div>
             </section>
             <div className="cities__right-section">
