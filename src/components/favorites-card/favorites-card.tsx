@@ -1,4 +1,5 @@
-import { MAX_RATING } from '../../const';
+import { Link } from 'react-router-dom';
+import { AppRoute, MAX_RATING } from '../../const';
 import { Offer } from '../../types/data';
 
 type FavoritesCardProps = {
@@ -6,8 +7,9 @@ type FavoritesCardProps = {
 }
 
 function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
-  const {isPremium, isFavorite, price, type, previewImage, title, rating} = offer;
+  const {id, isPremium, isFavorite, price, type, previewImage, title, rating} = offer;
   const ratingPerc = (rating / MAX_RATING) * 100;
+  const offerUrl = AppRoute.Room.replace('id', `${id}`);
 
   return (
     <article className="favorites__card place-card">
@@ -17,9 +19,9 @@ function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
         </div>
       )}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={offerUrl}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt="preview" />
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -41,7 +43,7 @@ function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={offerUrl}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -1,4 +1,5 @@
-import { MAX_RATING } from '../../const';
+import { Link } from 'react-router-dom';
+import { AppRoute, MAX_RATING } from '../../const';
 import { Offer } from '../../types/data';
 import _ from 'lodash';
 
@@ -8,15 +9,16 @@ type PlaceCardProps = {
 }
 
 function PlaceCard({offer, onMouseOver}: PlaceCardProps): JSX.Element {
-  const {price, isFavorite, type, previewImage, title, rating} = offer;
+  const {id, price, isFavorite, type, previewImage, title, rating} = offer;
   const ratingPerc = (rating / MAX_RATING) * 100;
+  const offerUrl = AppRoute.Room.replace('id', `${id}`);
 
   return (
     <article className="cities__card place-card" onMouseOver={() => onMouseOver(offer)}>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={offerUrl}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="preview"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -38,7 +40,7 @@ function PlaceCard({offer, onMouseOver}: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={offerUrl}>{title}</Link>
         </h2>
         <p className="place-card__type">{_.capitalize(type)}</p>
       </div>
