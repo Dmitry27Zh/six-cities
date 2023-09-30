@@ -1,12 +1,15 @@
 import { Offers } from '../../types/data';
 import Header from '../header/header';
 import OffersList from '../offers-list/offers-list';
+import Map from '../map/map';
 
 type MainScreenProps = {
   offers: Offers;
 }
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
+  const points = offers.map(({location}) => location);
+
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -72,7 +75,7 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
               <OffersList offers={offers}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map points={points}/>
             </div>
           </div>
         </div>
