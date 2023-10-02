@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, MAX_RATING } from '../../const';
+import { AppRoute } from '../../const';
 import { Offer } from '../../types/data';
+import Rating from '../rating/rating';
 import _ from 'lodash';
 
 type PlaceCardProps = {
@@ -10,7 +11,6 @@ type PlaceCardProps = {
 
 function PlaceCard({offer, onMouseOver}: PlaceCardProps): JSX.Element {
   const {id, price, isFavorite, type, previewImage, title, rating} = offer;
-  const ratingPerc = (rating / MAX_RATING) * 100;
   const offerUrl = AppRoute.Room.replace('id', `${id}`);
 
   return (
@@ -35,8 +35,7 @@ function PlaceCard({offer, onMouseOver}: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${ratingPerc}%`}}></span>
-            <span className="visually-hidden">Rating</span>
+            <Rating value={rating} />
           </div>
         </div>
         <h2 className="place-card__name">

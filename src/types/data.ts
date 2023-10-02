@@ -16,7 +16,10 @@ export type City = {
 }
 
 export type User = {
-  avatarUrl: string;
+  avatarUrl: Src;
+  id: Id;
+  isPro: boolean;
+  name: string;
 }
 
 export type Rating = number
@@ -41,9 +44,11 @@ export type Offer = {
 
 export type Offers = Offer[]
 
+export type Date = string
+
 export type Review = {
   comment: string;
-  date: string;
+  date: Date;
   id: Id;
   rating: Rating;
   user: User;

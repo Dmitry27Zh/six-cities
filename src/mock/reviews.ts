@@ -10,5 +10,17 @@ export const reviews = [
       isPro: false,
       name: 'Max'
     }
+  },
+  {
+    comment: 'sisisisjssjsjj',
+    date: '2019-05-08T14:13:56.569Z',
+    id: 2,
+    rating: 3,
+    user: {
+      avatarUrl: 'img/1.png',
+      id: 4,
+      isPro: false,
+      name: 'Max'
+    }
   }
 ];
