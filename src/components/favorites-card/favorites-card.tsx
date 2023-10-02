@@ -1,15 +1,10 @@
 import { AppRoute } from '../../const';
-import { Offer } from '../../types/data';
+import { PlaceCard } from '../../types/data';
 import PlaceCardBadge from '../place-card-badge';
 import PlaceCardImage from '../place-card-image/place-card-image';
 import PlaceCardInfo from '../place-card-info/place-card-info';
 
-type FavoritesCardProps = {
-  offer: Offer;
-}
-
-function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
-  const {id, isPremium, isFavorite, price, type, previewImage, title, rating} = offer;
+function FavoritesCard({id, isPremium, isFavorite, price, type, previewImage, title, rating}: PlaceCard): JSX.Element {
   const url = AppRoute.Room.replace('id', `${id}`);
 
   return (

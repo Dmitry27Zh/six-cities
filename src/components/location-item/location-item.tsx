@@ -17,7 +17,7 @@ function LocationItem({location, offers}: LocationItemProps):JSX.Element {
         </div>
       </div>
       <div className="favorites__places">
-        {offers.map((offer) => <FavoritesCard key={offer.id} offer={offer} />)}
+        {offers.map((offer) => <FavoritesCard key={offer.id} {...offer} />)}
       </div>
     </li>
   );
