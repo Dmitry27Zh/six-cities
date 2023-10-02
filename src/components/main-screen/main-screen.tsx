@@ -9,6 +9,7 @@ type MainScreenProps = {
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
   const points = offers.map(({location}) => location);
+  const city = offers[0].city;
 
   return (
     <div className="page page--gray page--main">
@@ -75,7 +76,7 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
               <OffersList offers={offers}/>
             </section>
             <div className="cities__right-section">
-              <Map points={points}/>
+              <Map points={points} city={city} selectedPoint={points[0]}/>
             </div>
           </div>
         </div>
