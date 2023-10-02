@@ -1,5 +1,5 @@
 import { Review as ReviewType } from '../../types/data';
-import RatingStars from '../rating/rating';
+import RatingStars from '../rating/rating-stars';
 import Time from '../time/time';
 
 type ReviewProps = ReviewType

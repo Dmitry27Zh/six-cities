@@ -5,12 +5,13 @@ import { Icon, Marker } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import 'leaflet/dist/leaflet.css';
 import cn from 'classnames';
+import { ClassName } from '../../types/common';
 
 type MapProps = {
   points: Locations;
   city: City;
   selectedPoint?: Location;
-  className?: string;
+  className?: ClassName;
 }
 
 const defaultCustomIcon = new Icon({

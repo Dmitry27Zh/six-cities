@@ -26,6 +26,8 @@ export type User = {
 
 export type Rating = number
 
+export type OfferType = string
+
 export type Offer = {
   bedrooms: number;
   city: City;
@@ -41,8 +43,10 @@ export type Offer = {
   price: number;
   rating: Rating;
   title: string;
-  type: string;
+  type: OfferType;
 }
+
+export type PlaceCard = Pick<Offer, 'id' | 'price' | 'isFavorite' | 'isPremium' | 'type' | 'previewImage' | 'title' | 'rating'>
 
 export type Offers = Offer[]
 
