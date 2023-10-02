@@ -1,5 +1,5 @@
 import { Review as ReviewType } from '../../types/data';
-import Rating from '../rating/rating';
+import RatingStars from '../rating/rating';
 import Time from '../time/time';
 
 type ReviewProps = ReviewType
@@ -20,7 +20,7 @@ function Review({user, rating, comment, date}: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <Rating value={rating} />
+            <RatingStars value={rating} />
           </div>
         </div>
         <p className="reviews__text">

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, MAX_RATING } from '../../const';
+import { AppRoute } from '../../const';
 import { Offer } from '../../types/data';
+import RatingStars from '../rating/rating';
 
 type FavoritesCardProps = {
   offer: Offer;
@@ -8,7 +9,6 @@ type FavoritesCardProps = {
 
 function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
   const {id, isPremium, isFavorite, price, type, previewImage, title, rating} = offer;
-  const ratingPerc = (rating / MAX_RATING) * 100;
   const offerUrl = AppRoute.Room.replace('id', `${id}`);
 
   return (
@@ -38,8 +38,7 @@ function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${ratingPerc}%`}}></span>
-            <span className="visually-hidden">Rating</span>
+            <RatingStars value={rating} />
           </div>
         </div>
         <h2 className="place-card__name">

@@ -1,11 +1,11 @@
 import { Rating as RatingType } from '../../types/data';
 import { MAX_RATING } from '../../const';
 
-type RatingProps = {
+type RatingStarsProps = {
   value: RatingType;
 }
 
-function Rating({value}: RatingProps):JSX.Element {
+function RatingStars({value}: RatingStarsProps):JSX.Element {
   const ratingPerc = (value / MAX_RATING) * 100;
 
   return (
@@ -16,4 +16,4 @@ function Rating({value}: RatingProps):JSX.Element {
   );
 }
 
-export default Rating;
+export default RatingStars;

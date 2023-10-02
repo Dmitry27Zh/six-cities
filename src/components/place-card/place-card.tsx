@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/data';
-import Rating from '../rating/rating';
+import RatingStars from '../rating/rating';
 import _ from 'lodash';
 
 type PlaceCardProps = {
@@ -35,7 +35,7 @@ function PlaceCard({offer, onMouseOver}: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <Rating value={rating} />
+            <RatingStars value={rating} />
           </div>
         </div>
         <h2 className="place-card__name">
