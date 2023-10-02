@@ -8,6 +8,8 @@ export type Location = {
   zoom: number;
 }
 
+export type Locations = Location[]
+
 export type CityName = string;
 
 export type City = {

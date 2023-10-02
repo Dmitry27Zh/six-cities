@@ -1,10 +1,17 @@
+import { offers } from '../../mock/offers';
 import { reviews } from '../../mock/reviews';
+import { Locations, Offer, Offers } from '../../types/data';
 import Header from '../header/header';
 import ReviewForm from '../review-form/review-form';
 import ReviewsList from '../reviews-list/reviews-list';
+import Map from '../map/map';
 
 function RoomScreen(): JSX.Element {
   const reviewsCount = reviews.length;
+  const data: Offer = offers[0];
+  const { city } = data;
+  const other: Offers = offers.filter((offer) => offer.city.name === city.name).slice(0, 3);
+  const points: Locations = other.map(({location}) => location);
 
   return (
     <div className="page">
@@ -136,7 +143,7 @@ function RoomScreen(): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <Map className='property__map' city={city} points={points}/>
         </section>
         <div className="container">
           <section className="near-places places">
