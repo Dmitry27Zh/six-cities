@@ -6,20 +6,17 @@ import FavoritesScreen from '../favorites-screen/favorites-screen';
 import RoomScreen from '../room-screen/room-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-import { Offers, Reviews } from '../../types/data';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
-type AppProps = {
-  offers: Offers;
-  reviews: Reviews;
-}
-
-function App({offers, reviews}: AppProps): JSX.Element {
+function App(): JSX.Element {
+  const offers = useSelector((state: RootState) => state.offers);
   const favorites = offers.filter((offer) => offer.isFavorite);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen offers={offers} />} />
+        <Route path={AppRoute.Main} element={<MainScreen />} />
         <Route path={AppRoute.Signin} element={<SigninScreen />}/>
         <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><FavoritesScreen offers={favorites} /></PrivateRoute>}/>
         <Route path={AppRoute.Room} element={<RoomScreen />}/>

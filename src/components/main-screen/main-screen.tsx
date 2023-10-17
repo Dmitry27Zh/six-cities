@@ -1,20 +1,33 @@
-import { Offers } from '../../types/data';
 import Header from '../header/header';
 import OffersList from '../offers-list/offers-list';
 import Map from '../map/map';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { useDispatch } from 'react-redux';
+import { setOffers } from '../../store/offers';
+import { useEffect } from 'react';
+import { changeCity } from '../../store/city';
 
-type MainScreenProps = {
-  offers: Offers;
-}
+function MainScreen(): JSX.Element {
+  const offers = useSelector((state: RootState) => state.offers);
+  const city = useSelector((state: RootState) => state.city);
+  const dispatch = useDispatch();
 
-function MainScreen({offers}: MainScreenProps): JSX.Element {
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(setOffers());
+    }, 4000);
+    setTimeout(() => {
+      dispatch(changeCity('Cologne'));
+    }, 8000);
+  }, [dispatch]);
+
+
   const points = offers.map(({location}) => location);
-  const city = offers[0].city;
 
   return (
     <div className="page page--gray page--main">
       <Header />
-
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -57,7 +70,7 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in {city.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
