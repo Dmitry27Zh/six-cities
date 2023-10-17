@@ -40,6 +40,7 @@ export type Offer = {
   location: Location;
   maxAdults: number;
   previewImage: Src;
+  host: User;
   price: number;
   rating: Rating;
   title: string;
