@@ -1,6 +1,6 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useMemo, useState } from 'react';
 import { City } from '../types/data';
-import { Map, TileLayer } from 'leaflet';
+import { Map, MapOptions, TileLayer } from 'leaflet';
 
 type MapRefType<T> = MutableRefObject<T> & {
   isMapInited?: boolean;
@@ -11,18 +11,23 @@ function useMap(
   city: City
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
+  const config: MapOptions = useMemo(() => ({
+    center: {
+      lat: city.location.latitude,
+      lng: city.location.longitude,
+    },
+    zoom: 10,
+  }), [city]);
 
   useEffect(() => {
     const mapElement = mapRef.current;
 
+    if (map && config.center) {
+      map.flyTo(config.center, config.zoom);
+    }
+
     if (mapElement !== null && !mapRef.isMapInited) {
-      const instance = new Map(mapElement, {
-        center: {
-          lat: city.location.latitude,
-          lng: city.location.longitude,
-        },
-        zoom: 10,
-      });
+      const instance = new Map(mapElement, config);
 
       const layer = new TileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
@@ -35,7 +40,7 @@ function useMap(
       mapRef.isMapInited = true;
       setMap(instance);
     }
-  }, [mapRef, city]);
+  }, [mapRef, city, map, config]);
 
   return map;
 }
