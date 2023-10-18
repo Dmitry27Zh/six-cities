@@ -3,8 +3,8 @@ export const offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.85309666406198,
+        latitude: 52.370216,
+        longitude: 4.895168,
         zoom: 10
       },
       name: 'Amsterdam'
