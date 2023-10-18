@@ -16,10 +16,25 @@ function MainScreen(): JSX.Element {
   const offers = useSelector((state: RootState) => state.offers);
   const city = useSelector((state: RootState) => state.city);
   const cities = uniqWith(offers.map((offer) => offer.city), (a, b) => isEqual(a, b));
-
-  const offersInCity = offers.filter((offer) => offer.city.name === city.name);
-  const points = offersInCity.map(({location}) => location);
   const [sortBy, setSortBy] = useState<SortTypes>(SORT_TYPES[0]);
+
+  const offersInCity = offers
+    .filter((offer) => offer.city.name === city.name)
+    .sort((a, b) => {
+      switch(sortBy) {
+        case 'Popular':
+          return 0;
+        case 'Price: low to high':
+          return a.price - b.price;
+        case 'Price: high to low':
+          return b.price - a.price;
+        case 'Top rated first':
+          return b.rating - a.rating;
+        default:
+          throw new Error('Unknown sort type!');
+      }
+    });
+  const points = offersInCity.map(({location}) => location);
   const handleCurrentOfferChange = (offer: Offer | null) => {
     setCurrentOffer(offer);
   };

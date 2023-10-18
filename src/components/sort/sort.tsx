@@ -23,6 +23,7 @@ function Sort({current, onChange}: SortProps): JSX.Element {
   return (
     <form className="places__sorting" action="#" method="get" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <span className="places__sorting-caption">Sort by</span>
+      {' '}
       <span className="places__sorting-type" tabIndex={0}>
         {current}
         <svg className="places__sorting-arrow" width="7" height="4">
