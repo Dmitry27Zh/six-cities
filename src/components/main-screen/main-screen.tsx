@@ -1,29 +1,21 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { Offer } from '../../types/data';
 import Header from '../header/header';
 import OffersList from '../offers-list/offers-list';
 import Map from '../map/map';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { useDispatch } from 'react-redux';
-import { setOffers } from '../../store/offers';
-import { useEffect } from 'react';
-import { changeCity } from '../../store/city';
 
 function MainScreen(): JSX.Element {
+  const [currentOffer, setCurrentOffer] = useState<Offer | null>(null);
   const offers = useSelector((state: RootState) => state.offers);
   const city = useSelector((state: RootState) => state.city);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(setOffers());
-    }, 4000);
-    setTimeout(() => {
-      dispatch(changeCity('Cologne'));
-    }, 8000);
-  }, [dispatch]);
-
-
-  const points = offers.map(({location}) => location);
+  const offersInCity = offers.filter((offer) => offer.city.name === city.name);
+  const points = offersInCity.map(({location}) => location);
+  const handleCurrentOfferChange = (offer: Offer | null) => {
+    setCurrentOffer(offer);
+  };
 
   return (
     <div className="page page--gray page--main">
@@ -70,7 +62,7 @@ function MainScreen(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {city.name}</b>
+              <b className="places__found">{offersInCity.length} places to stay in {city.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -86,10 +78,10 @@ function MainScreen(): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <OffersList offers={offers}/>
+              <OffersList offers={offersInCity} onCurrentOfferChange={handleCurrentOfferChange}/>
             </section>
             <div className="cities__right-section">
-              <Map className="cities__map" points={points} city={city} selectedPoint={points[0]}/>
+              <Map className="cities__map" points={points} city={city} selectedPoint={currentOffer?.location}/>
             </div>
           </div>
         </div>

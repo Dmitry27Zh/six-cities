@@ -1,22 +1,22 @@
-/* eslint-disable no-console */
 import PlaceCard from '../place-card/place-card';
 import { Offer, Offers } from '../../types/data';
-import { useEffect, useState } from 'react';
 
 type OffersListProps = {
   offers: Offers;
+  onCurrentOfferChange: (offer: Offer | null) => void;
 }
 
-function OffersList({offers}: OffersListProps):JSX.Element {
-  const [currentOffer, setCurrentOffer] = useState<Offer>();
-  const handleCurrentOfferChange = (offer: Offer) => {
-    setCurrentOffer(offer);
+function OffersList({offers, onCurrentOfferChange}: OffersListProps):JSX.Element {
+  const handlePlaceCardMouseOver = (offer: Offer) => {
+    onCurrentOfferChange(offer);
   };
-  useEffect(() => console.log(currentOffer), [currentOffer]);
+  const handlePlaceCardMouseLeave = () => {
+    onCurrentOfferChange(null);
+  };
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => <PlaceCard key={offer.id} onMouseOver={handleCurrentOfferChange} {...offer} />)}
+      {offers.map((offer) => <PlaceCard key={offer.id} onMouseOver={handlePlaceCardMouseOver} onMouseLeave={handlePlaceCardMouseLeave} {...offer} />)}
     </div>
   );
 }
